@@ -3,9 +3,8 @@
 using namespace std;
 
 /*
- * 1.1.1. Consider two integer variables a and b. Write a program block that
- * exchanges the values of a and b (i.e., the value of a becomes the value
- * of b and vice versa).
+ * 1.1.10. Repeat the preceding problem with the additional requirement that the
+ * number of operations should be proportional to log n. (Use only integer variables.)
  */
 
 typedef unsigned long long ull;
