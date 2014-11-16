@@ -10,7 +10,7 @@ using namespace std;
  * multiplicities in x and y. The number of operations should be of order k + l.
  */
 
-void merge(const vector <int> &a, const vector <int> &b, vector <int> &c)
+void findCommon(const vector <int> &a, const vector <int> &b, vector <int> &c)
 {
 	int k = a.size();
 	int l = b.size();
@@ -42,7 +42,7 @@ int main()
 		cin >> b[i];
 	}
 
-	merge(a, b, c);
+	findCommon(a, b, c);
 	for(int i = 0; i < c.size(); ++i) {
 		cout << c[i] << " ";
 	}
