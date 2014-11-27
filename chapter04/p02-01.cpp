@@ -4,8 +4,10 @@
 using namespace std;
 
 /*
- * 4.1.2. Give another sorting algorithm which uses the following invariant
- * relation: “first k elements are sorted” (x[1] <= ... <= x[k]).
+ * 4.2.1. Find a sorting algorithm that requires only O(n log n) operations. (In
+ * other words, the number of operations should not exceed Cn log n for some constant
+ * C that does not depend on n.)
+ * This solution implements merge sort.
  */
 
 void merge(int p, int q, int r, vector <int> &a, vector <int> &b)
