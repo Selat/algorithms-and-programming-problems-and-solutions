@@ -17,7 +17,7 @@ struct State
 
 void nextChar(char c, State &s, string &res, const string &pattern)
 {
-	// inveriant relation: substrings a[i .. i + match_id - 1] and
+	// invariant relation: substrings a[i .. i + match_id - 1] and
 	// pattern[0 .. match_id - 1] are matching.
 	if(c == pattern[s.match_id]) {
 		++s.match_id;
