@@ -3,6 +3,11 @@
 
 using namespace std;
 
+/*
+ * 6.1.1. Check the correctness of a given sequence that consists of
+ * the following characters {'(', ')', '[', ']'}.
+ */
+
 int main()
 {
 	string str;
