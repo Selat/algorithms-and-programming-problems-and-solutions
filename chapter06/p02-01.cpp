@@ -29,7 +29,7 @@ public:
 	{
 		return m_data[m_first];
 	}
-	const T& pop()
+	void pop()
 	{
 		++m_first;
 		if(m_first == m_data.size()) {
