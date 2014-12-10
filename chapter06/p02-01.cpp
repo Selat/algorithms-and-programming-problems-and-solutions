@@ -35,6 +35,7 @@ public:
 		if(m_first == m_data.size()) {
 			m_first = 0;
 		}
+		--m_size;
 	}
 private:
 	int m_first;
