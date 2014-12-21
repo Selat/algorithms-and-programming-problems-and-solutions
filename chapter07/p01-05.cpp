@@ -3,8 +3,10 @@
 using namespace std;
 
 /*
- * 7.1.4. Repeat the previous problem with the requirement: the recursion depth
- * (number of recursion levels) should not exceed C * log n, where n is the exponent.
+ * 7.1.5. What happens if we replace the line
+ *     power:= power(a*a, n div 2)
+ * in the above program by the line
+ *     power:= power(a, n div 2)* power(a, n div 2)
  */
 
 double pow(double a, int n)
@@ -14,7 +16,8 @@ double pow(double a, int n)
 	} else if(n & 1) {
 		return a * pow(a, n - 1);
 	} else {
-		pow(a * a, n / 2);
+		double tmp = pow(a, n / 2);
+		return tmp * tmp;
 	}
 }
 
