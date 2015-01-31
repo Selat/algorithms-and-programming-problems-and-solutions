@@ -1,6 +1,7 @@
 #include <iostream>
 #include <vector>
 #include <algorithm>
+#include <stack>
 
 using namespace std;
 
@@ -16,14 +17,31 @@ vector <int> ans;
 
 void dfs(int v)
 {
-	used[v] = true;
-	for(size_t i = 0; i < g[v].size(); ++i) {
-		int to = g[v][i];
-		if(!used[to]) {
-			dfs(to);
+	stack <int> s;
+	s.push(v);
+	while(!s.empty()) {
+		int v = s.top();
+		used[v] = true;
+		bool has_unused = false;
+		for(int i = 0; i < g[v].size(); ++i) {
+			int to = g[v][i];
+			if(!used[to]) {
+				has_unused = true;
+				break;
+			}
+		}
+		if(has_unused) {
+			for(int i = 0; i < g[v].size(); ++i) {
+				int to = g[v][i];
+				if(!used[to]) {
+					s.push(to);
+				}
+			}
+		} else {
+			ans.push_back(v);
+			s.pop();
 		}
 	}
-	ans.push_back(v);
 }
 
 void topsort()
