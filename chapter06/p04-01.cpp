@@ -20,90 +20,73 @@ class Heap
 {
 public:
 	Heap(int n);
-	void push(int val);
 	int min();
-	void pop();
+	int get(int id);
+	void set(int id, int val);
 	void print()
 	{
-		for(int i = 1; i <= size_; ++i) {
-			cout << data_[i] << " ";
+		for(int i = 1; i < tree_.size(); ++i) {
+			cout << tree_[i] << " ";
 		}
 		cout << endl;
 	}
 private:
-	void checkup(int id);
-	void checkdown(int id);
 
+	vector <int> tree_;
 	vector <int> data_;
 	int size_;
 };
 
 Heap::Heap(int n) :
+	tree_(n + 1),
 	data_(n + 1),
 	size_(0)
 {
-
-}
-
-void Heap::push(int val)
-{
-	data_[++size_] = val;
-	checkup(size_);
+	for(int i = 1; i <= n; ++i) {
+		set(i, INT_MAX);
+	}
 }
 
 int Heap::min()
 {
-	if(size_ == 0) {
-		return INT_MAX;
-	} else {
-		return data_[1];
-	}
+	return tree_[1];
 }
 
-void Heap::pop()
+int Heap::get(int id)
 {
-	if(size_ > 0) {
-		data_[1] = data_[size_--];
-		checkdown(1);
-	}
+	return data_[id];
 }
 
-void Heap::checkup(int id)
+void Heap::set(int id, int val)
 {
+	data_[id] = val;
+	tree_[id] = data_[id];
+	if(2 * id < tree_.size()) {
+		tree_[id] = ::min(tree_[id], tree_[id * 2]);
+	}
+	if(2 * id + 1 < tree_.size()) {
+		tree_[id] = ::min(tree_[id], tree_[id * 2 + 1]);
+	}
 	int p = id / 2;
-	if(p == 0) return;
-	while((p != 0) && (data_[p] > data_[id])) {
-		swap(data_[p], data_[id]);
-		id = p;
-		p = id / 2;
-	}
-}
-
-void Heap::checkdown(int id)
-{
-	int c = 2 * id;
-	if(c > size_) return;
-	if((c + 1 <= size_) && (data_[c + 1] < data_[c])) c++;
-
-	if(data_[c] < data_[id]) {
-		swap(data_[c], data_[id]);
-		checkdown(c);
+	while(p > 0) {
+		tree_[p] = ::min(data_[p], tree_[p * 2]);
+		if(p * 2 + 1 < tree_.size()) {
+			tree_[p] = ::min(tree_[p], tree_[p * 2 + 1]);
+		}
+		p /= 2;
 	}
 }
 
 int main()
 {
-	int n, tmp;
+	int n, tmp, id;
 	cin >> n;
 	Heap h(n);
 	for(int i = 0; i < n; ++i) {
-		cin >> tmp;
-		h.push(tmp);
-	}
-
-	for(int i = 0; i < n; ++i) {
+		cin >> id >> tmp;
+		h.set(id, tmp);
 		cout << h.min() << endl;
-		h.pop();
+		h.print();
 	}
 	return 0;
 }
