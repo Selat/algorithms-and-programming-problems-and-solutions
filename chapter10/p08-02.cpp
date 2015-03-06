@@ -47,7 +47,7 @@ SuffixTree::SuffixTree(const string &s)
 						int lid = g_.size() - 1;
 						it = g_[id1].insert(make_pair(s[j], make_pair(g_.size(), s.substr(j, s.length() - j)))).first;
 						s2 = s2.substr(0, id);
-						vid = lid;
+						vid = id1;
 					} else {
 						vid = it->second.first;
 					}
@@ -73,7 +73,7 @@ bool SuffixTree::match(const string &s)
 				++id;
 				++i;
 			}
-			if((i < s.length()) && (id < s.length())) {
+			if((i < s.length()) && (id < s2.length())) {
 				matches = false;
 				break;
 			} else if(i < s.length()) {
